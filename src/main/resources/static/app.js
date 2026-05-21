@@ -18,6 +18,8 @@ async function handleClick(name) {
   loadingEl.classList.remove('hidden');
   errorMsgEl.classList.add('hidden');
   panelsEl.classList.add('hidden');
+  ['llm-error-type','llm-line-number','llm-explanation','llm-suggestion']
+    .forEach(id => { document.getElementById(id).textContent = ''; });
 
   const [sourceCode, errorOutput] = await Promise.all([
     fetch(`/errors/${name}.java`).then(r => r.text()),
