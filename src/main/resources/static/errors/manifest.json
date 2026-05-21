@@ -1,0 +1,8 @@
+[
+  { "name": "NullPointer",          "label": "NullPointerException" },
+  { "name": "ArrayIndexOutOfBounds","label": "ArrayIndexOutOfBoundsException" },
+  { "name": "ClassCast",            "label": "ClassCastException" },
+  { "name": "ArithmeticDivByZero",  "label": "ArithmeticException — divide by zero" },
+  { "name": "NumberFormat",         "label": "NumberFormatException" },
+  { "name": "MissingSemicolon",     "label": "Compile error — missing semicolon" }
+]

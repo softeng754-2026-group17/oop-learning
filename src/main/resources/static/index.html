@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OOP Error Explainer</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>OOP Error Explainer</h1>
+    <p>Select a Java error to receive a plain-language explanation.</p>
+  </header>
+
+  <section id="error-buttons" aria-label="Error scenarios"></section>
+
+  <div id="loading" class="hidden">Analysing error&hellip;</div>
+  <div id="error-msg" class="hidden"></div>
+
+  <main id="panels" class="hidden">
+    <section class="panel">
+      <h2>Source Code</h2>
+      <pre><code id="source-code"></code></pre>
+    </section>
+
+    <section class="panel">
+      <h2>Compiler / Runtime Output</h2>
+      <pre><code id="error-output"></code></pre>
+    </section>
+
+    <section class="panel">
+      <h2>LLM Explanation</h2>
+      <dl id="llm-response">
+        <dt>Error type</dt>
+        <dd id="llm-error-type"></dd>
+        <dt>Line number</dt>
+        <dd id="llm-line-number"></dd>
+        <dt>Explanation</dt>
+        <dd id="llm-explanation"></dd>
+        <dt>Suggested next step</dt>
+        <dd id="llm-suggestion"></dd>
+      </dl>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
