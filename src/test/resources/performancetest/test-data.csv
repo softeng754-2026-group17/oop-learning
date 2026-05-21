@@ -1,0 +1,7 @@
+name,expectedErrorType
+NullPointer,NullPointerException
+ArrayIndexOutOfBounds,ArrayIndexOutOfBoundsException
+ClassCast,ClassCastException
+ArithmeticDivByZero,ArithmeticException
+NumberFormat,NumberFormatException
+MissingSemicolon,CompileError
