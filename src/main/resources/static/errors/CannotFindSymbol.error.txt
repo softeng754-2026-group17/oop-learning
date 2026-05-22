@@ -1,0 +1,6 @@
+CannotFindSymbol.java:3: error: cannot find symbol
+        System.out.println(messge);
+                           ^
+  symbol:   variable messge
+  location: class CannotFindSymbol
+1 error
