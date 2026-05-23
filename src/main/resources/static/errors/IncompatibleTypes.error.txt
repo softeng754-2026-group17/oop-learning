@@ -1,0 +1,4 @@
+IncompatibleTypes.java:3: error: incompatible types: String cannot be converted to int
+        int x = "hello";
+                ^
+1 error

@@ -10,7 +10,6 @@ A Spring Boot service that turns a Java compiler or runtime error into a beginne
 
 ## HTTP API
 
-`POST /api/explain-error` with `{ "sourceCode", "errorOutput" }` returns
-`{ "errorType", "lineNumber", "plainExplanation", "suggestion" }`.
+`POST /api/explain-error` with `{ "sourceCode", "errorOutput" }` returns `{ "errorCode", "errorType", "lineNumber", "plainLanguageExplanation", "suggestedFix" }`.
 
 Six pre-captured Java error fixtures live under `src/main/resources/static/errors/` for demo and performance testing.

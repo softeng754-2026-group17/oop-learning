@@ -52,8 +52,8 @@ async function handleClick(name) {
   const data = await res.json();
   document.getElementById('llm-error-type').textContent  = data.errorType;
   document.getElementById('llm-line-number').textContent = data.lineNumber === 0 ? 'unknown' : data.lineNumber;
-  document.getElementById('llm-explanation').textContent = data.plainExplanation;
-  document.getElementById('llm-suggestion').textContent  = data.suggestion;
+  document.getElementById('llm-explanation').textContent = data.plainLanguageExplanation;
+  document.getElementById('llm-suggestion').textContent  = data.suggestedFix;
   panelsEl.classList.remove('hidden');
 }
 

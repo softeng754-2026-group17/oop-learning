@@ -4,5 +4,7 @@
   { "name": "ClassCast",            "label": "ClassCastException" },
   { "name": "ArithmeticDivByZero",  "label": "ArithmeticException — divide by zero" },
   { "name": "NumberFormat",         "label": "NumberFormatException" },
-  { "name": "MissingSemicolon",     "label": "Compile error — missing semicolon" }
+  { "name": "MissingSemicolon",     "label": "Compile error — missing semicolon" },
+  { "name": "CannotFindSymbol",     "label": "Compile error — cannot find symbol" },
+  { "name": "IncompatibleTypes",    "label": "Compile error — incompatible types" }
 ]

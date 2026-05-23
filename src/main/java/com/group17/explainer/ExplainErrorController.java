@@ -64,13 +64,13 @@ public class ExplainErrorController {
                                         JsonValue.from(Map.of("type", "string")))
                                 .putAdditionalProperty("lineNumber",
                                         JsonValue.from(Map.of("type", "integer")))
-                                .putAdditionalProperty("plainExplanation",
+                                .putAdditionalProperty("plainLanguageExplanation",
                                         JsonValue.from(Map.of("type", "string")))
-                                .putAdditionalProperty("suggestion",
+                                .putAdditionalProperty("suggestedFix",
                                         JsonValue.from(Map.of("type", "string")))
                                 .build())
                         .required(List.of(
-                                "errorType", "lineNumber", "plainExplanation", "suggestion"))
+                                "errorType", "lineNumber", "plainLanguageExplanation", "suggestedFix"))
                         .build())
                 .build();
     }
@@ -104,16 +104,31 @@ public class ExplainErrorController {
             if (maybeToolUse.isPresent() && TOOL_NAME.equals(maybeToolUse.get().name())) {
                 Map<String, Object> input = maybeToolUse.get()._input()
                         .convert(new TypeReference<Map<String, Object>>() {});
+                String errorType = String.valueOf(input.getOrDefault("errorType", "Unknown"));
                 return new ExplainResponse(
-                        String.valueOf(input.getOrDefault("errorType", "Unknown")),
+                        deriveErrorCode(errorType, req.errorOutput()),
+                        errorType,
                         ((Number) input.getOrDefault("lineNumber", 0)).intValue(),
-                        String.valueOf(input.getOrDefault("plainExplanation", "")),
-                        String.valueOf(input.getOrDefault("suggestion", ""))
+                        String.valueOf(input.getOrDefault("plainLanguageExplanation", "")),
+                        String.valueOf(input.getOrDefault("suggestedFix", ""))
                 );
             }
         }
 
         throw new IllegalStateException(
                 "Anthropic response did not include a " + TOOL_NAME + " tool call.");
+    }
+
+    private String deriveErrorCode(String errorType, String errorOutput) {
+        return switch (errorType) {
+            case "NullPointerException"           -> "JAVA_NULL_POINTER_EXCEPTION";
+            case "ArrayIndexOutOfBoundsException" -> "JAVA_ARRAY_INDEX_OUT_OF_BOUNDS";
+            case "CompileError" -> {
+                if (errorOutput.contains("cannot find symbol")) yield "JAVA_CANNOT_FIND_SYMBOL";
+                if (errorOutput.contains("incompatible types"))  yield "JAVA_INCOMPATIBLE_TYPES";
+                yield "JAVA_SYNTAX_ERROR";
+            }
+            default -> "JAVA_UNKNOWN_ERROR";
+        };
     }
 }

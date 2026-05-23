@@ -16,5 +16,5 @@ When filling in lineNumber:
 - Use the line number referenced in the error output.
 - If no line number is identifiable, use 0.
 
-plainExplanation should be 2–4 sentences in everyday English.
-suggestion should be one concrete action.
+plainLanguageExplanation should be 2–4 sentences in everyday English.
+suggestedFix should be one concrete action.
