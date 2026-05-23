@@ -10,18 +10,6 @@ A Spring Boot service that turns a Java compiler or runtime error into a beginne
 
 ## HTTP API
 
-`POST /api/explain-error` with `{ "sourceCode", "errorOutput" }` returns:
-
-```json
-{
-  "errorCode": "JAVA_NULL_POINTER_EXCEPTION",
-  "errorType": "NullPointerException",
-  "lineNumber": 4,
-  "plainLanguageExplanation": "...",
-  "suggestedFix": "..."
-}
-```
-
-Possible `errorCode` values: `JAVA_NULL_POINTER_EXCEPTION`, `JAVA_ARRAY_INDEX_OUT_OF_BOUNDS`, `JAVA_CANNOT_FIND_SYMBOL`, `JAVA_INCOMPATIBLE_TYPES`, `JAVA_SYNTAX_ERROR`, `JAVA_UNKNOWN_ERROR`.
+`POST /api/explain-error` with `{ "sourceCode", "errorOutput" }` returns `{ "errorCode", "errorType", "lineNumber", "plainLanguageExplanation", "suggestedFix" }`.
 
 Six pre-captured Java error fixtures live under `src/main/resources/static/errors/` for demo and performance testing.
